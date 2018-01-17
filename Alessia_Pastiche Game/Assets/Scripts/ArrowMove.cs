@@ -11,7 +11,7 @@ public class ArrowMove : MonoBehaviour {
 	[Header("Attributes")]
 	public float range = 15f;
 	public float fireRate = 1f;
-	private float fireCountdown = 0f;
+//	private float fireCountdown = 0f;
 	public float RotateSpeed = 30f;
 
 	public GameObject bubblePrefab;
@@ -39,38 +39,38 @@ public class ArrowMove : MonoBehaviour {
 
 		}
 
-		if (fireCountdown <= 0f) {
-		
-			Shoot ();
-			fireCountdown = 1f / fireRate;
-		
-		}
-
-		fireCountdown -= Time.deltaTime;
-
-	}
-
-	void Shoot() {
-	
-		Debug.Log ("Shoot!");
-		GameObject bubbleGO = (GameObject)Instantiate (bubblePrefab, firePoint.position, firePoint.rotation);
-		Bubble bubble = bubbleGO.GetComponent<Bubble> ();
-
-		if (bubble != null)
-			bubble.Seek (target);
-
-	}
-
-	void OnCollisionEnter(Collision collision){
-
-		Debug.Log ("Collision!");
-		OnGround = true;
-
-	}
-	void OnCollisionExit(Collision collision){
-
-
-		OnGround = false;
-
+//		if (fireCountdown <= 0f) {
+//		
+//			Shoot ();
+//			fireCountdown = 1f / fireRate;
+//		
+//		}
+//
+//		fireCountdown -= Time.deltaTime;
+//
+//	}
+//
+//	void Shoot() {
+//	
+//		Debug.Log ("Shoot!");
+//		GameObject bubbleGO = (GameObject)Instantiate (bubblePrefab, firePoint.position, firePoint.rotation);
+//		Bubble bubble = bubbleGO.GetComponent<Bubble> ();
+//
+//		if (bubble != null)
+//			bubble.Seek (target);
+//
+//	}
+//
+//	void OnCollisionEnter(Collision collision){
+//
+//		Debug.Log ("Collision!");
+//		OnGround = true;
+//
+//	}
+//	void OnCollisionExit(Collision collision){
+//
+//
+//		OnGround = false;
+//
 	}
 }

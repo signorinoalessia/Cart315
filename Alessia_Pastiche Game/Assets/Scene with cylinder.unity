@@ -3534,13 +3534,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608777714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0.99998206, z: -0, w: -0.00599144}
+  m_LocalPosition: {x: -0.09, y: 1, z: 12.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.687, z: 0}
 --- !u!1 &1106099466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,11 +3652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93994c9467ccd4943ab8eaef69959c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  range: 15
-  bubbleTag: Bubble
-  partToRotate: {fileID: 0}
-  turnSpeed: 10
 --- !u!4 &1242727823
 Transform:
   m_ObjectHideFlags: 0
@@ -3683,11 +3678,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de479e923a33499ab500a8d258753c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  JumpForce: 0
-  OnGround: 0
-  RotateSpeed: 30
+  range: 15
   fireRate: 1
+  RotateSpeed: 30
+  bubblePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!1 &1258828644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,11 +3807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de479e923a33499ab500a8d258753c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  JumpForce: 0
-  OnGround: 0
-  RotateSpeed: 30
+  range: 15
   fireRate: 1
+  RotateSpeed: 30
+  bubblePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
 --- !u!114 &1269015327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3828,11 +3823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93994c9467ccd4943ab8eaef69959c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  range: 15
-  bubbleTag: Bubble
-  partToRotate: {fileID: 0}
-  turnSpeed: 10
 --- !u!1 &1399065703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3988,7 +3978,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2120533441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.015563965, y: -1.8085938, z: 3.22}
+  m_LocalPosition: {x: 0.015563965, y: -0.02, z: 3.22}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
