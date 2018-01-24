@@ -27,8 +27,15 @@ public class BallBehaviour : MonoBehaviour {
 			this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 			this.GetComponent<Rigidbody> ().isKinematic = true;
 		}
+		if(col.transform.tag == "Ball") {
 
-		//Have I collided with other bal?
+			if(GetComponent<Renderer>().material.name == col.transform.GetComponent<Renderer>().material.name) {
+				Debug.Log("This ball has the same material as me!");
+			}
+
+		}
+
+		//Have I collided with other ball?
 
 		//Does this ball have the same material as me?
 
