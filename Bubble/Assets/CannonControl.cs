@@ -21,7 +21,7 @@ public class CannonControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 
 		if (Input.GetKey (KeyCode.RightArrow) == true) {
 			transform.Rotate (new Vector3 (0, 0, -RotateSpeed));
@@ -35,7 +35,15 @@ public class CannonControl : MonoBehaviour {
 			NewBall.rotation = SpawnPoint.rotation;
 			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
 			NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
+			ChangeColor ();
 		}
-
 	}
+
+	public void ChangeColor() {
+	
+		int chosenmaterial = Random.Range (0, mat.Length);
+		CannonRenderer.material = mat [chosenmaterial];
+	
+	}
+
 }
