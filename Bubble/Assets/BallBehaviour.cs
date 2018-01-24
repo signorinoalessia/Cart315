@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BallBehaviour : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 
-		GetComponent<Renderer> ().material.color = new Color (Random.value,Random.value,Random.value,Random.value);
 
 	}
 	
@@ -18,13 +18,14 @@ public class BallBehaviour : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col) {
 		
-		Debug.Log ("Ball has collided with" + col.transform.tag);
+		//Debug.Log ("Ball has collided with" + col.transform.tag);
 		//collider.rigidbody.velocity = new Vector3 (0, 0, 0);
 
-		if((col.transform.tag == "wall")||(col.transform.tag == "ball")) {
-
+		if((col.transform.tag == "Wall")||(col.transform.tag == "Ball")) {
+			
 			//collider.transform.GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 0);
-			GetComponent<Rigidbody> ().isKinematic = true;
+			this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
+			this.GetComponent<Rigidbody> ().isKinematic = true;
 
 		}
 

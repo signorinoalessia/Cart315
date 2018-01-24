@@ -8,10 +8,16 @@ public class CannonControl : MonoBehaviour {
 	public Transform BallPrefab;
 	public Transform SpawnPoint;
 	public float ShootForce;
+	public Material[] mat;
+	public Renderer CannonRenderer;
 
 	// Use this for initialization
 	void Start () {
-		
+
+		int chosenmaterial = Random.Range (0, mat.Length);
+		CannonRenderer.material = mat [chosenmaterial] ;
+
+
 	}
 	
 	// Update is called once per frame
@@ -27,8 +33,8 @@ public class CannonControl : MonoBehaviour {
 			Transform NewBall = Instantiate (BallPrefab);
 			NewBall.position = SpawnPoint.position;
 			NewBall.rotation = SpawnPoint.rotation;
+			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
 			NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
-
 		}
 
 	}
