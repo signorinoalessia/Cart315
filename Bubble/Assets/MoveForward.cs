@@ -7,7 +7,6 @@ public class MoveForward : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		AudioSource audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -21,7 +20,7 @@ public class MoveForward : MonoBehaviour {
 	
 		if (col.gameObject.name == "Walls") {
 			transform.Translate (new Vector3 (0, -1, 0));
-			audioSource.Play();
+
 		}
 	}
 }
