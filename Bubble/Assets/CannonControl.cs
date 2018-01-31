@@ -36,6 +36,7 @@ public class CannonControl : MonoBehaviour {
 			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
 			NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
 			ChangeColor ();
+			GetComponent<AudioSource> ().Play();
 		}
 	}
 
