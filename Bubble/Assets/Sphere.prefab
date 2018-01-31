@@ -190,6 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f939534f9c4834d8c9a77aaf6ad23473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsExploding: 0
+  CurrentlyCollidingSameColoredBalls: 0
+  AllSameColoredBallsImCollidingWith: []
 --- !u!135 &135806396727155058
 SphereCollider:
   m_ObjectHideFlags: 1
