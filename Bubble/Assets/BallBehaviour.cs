@@ -8,6 +8,8 @@ public class BallBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		AudioSource audioSource = GetComponent<AudioBall>();
+		AudioSource audioSource2 = GetComponent<AudioWall>();
 
 	}
 	
@@ -26,11 +28,13 @@ public class BallBehaviour : MonoBehaviour {
 			//collider.transform.GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 0);
 			this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 			this.GetComponent<Rigidbody> ().isKinematic = true;
+			audioSource.Play();
 		}
 		if(col.transform.tag == "Ball") {
 
 			if(GetComponent<Renderer>().material.name == col.transform.GetComponent<Renderer>().material.name) {
 				Debug.Log("This ball has the same material as me!");
+				audioSource2.Play();
 			}
 
 		}
