@@ -696,7 +696,7 @@ MonoBehaviour:
   RotateSpeed: 2
   BallPrefab: {fileID: 4927847302961096, guid: 3d5a33f5a6a494681ae474b0d4096631, type: 2}
   SpawnPoint: {fileID: 1438032607}
-  ShootForce: 1500
+  ShootForce: 200
   mat:
   - {fileID: 2100000, guid: df537a09622124bf09963c68b05c1add, type: 2}
   - {fileID: 2100000, guid: cfa60392ad32e492e945aafd493a76ff, type: 2}

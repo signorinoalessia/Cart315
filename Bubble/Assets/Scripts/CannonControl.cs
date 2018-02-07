@@ -34,7 +34,12 @@ public class CannonControl : MonoBehaviour {
 			NewBall.position = SpawnPoint.position;
 			NewBall.rotation = SpawnPoint.rotation;
 			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
-			NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
+
+			Vector3 DirectionVector = SpawnPoint.position - transform.position;
+			//NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
+			DirectionVector = DirectionVector * ShootForce;
+			NewBall.GetComponent<Rigidbody> ().AddForce(DirectionVector);
+
 			ChangeColor ();
 			GetComponent<AudioSource> ().Play();
 		}
