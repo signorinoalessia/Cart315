@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalScore: 0
+  Timeleft: 10
 --- !u!4 &187178457
 Transform:
   m_ObjectHideFlags: 0
