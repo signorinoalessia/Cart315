@@ -14,7 +14,7 @@ public class CannonControl : MonoBehaviour {
 	public Material[] mat;
 	public Renderer CannonRenderer;
 
-//	public float ShootForce;
+	public float ShootForce;
 //	private bool Grounded;
 //	private bool TimeHeld;
 
@@ -38,31 +38,11 @@ public class CannonControl : MonoBehaviour {
 
 	IEnumerator TimerRoutine() {
 
-		if (Input.GetButtonDown("Fire1"))
-		{
+		if (Input.GetKeyDown (KeyCode.Space) == true) {
 			yield return new WaitForSeconds(2f);
 			ChargeTime += ChargeRate;
 		}
-		if (Input.GetButtonUp("Fire1") && Time.time > 2f)
-		{
-			
-	}
-
-	// Update is called once per frame
-	void Update() {
-
-		if (Input.GetKey (KeyCode.RightArrow) == true) {
-			transform.Rotate (new Vector3 (0, 0, -RotateSpeed));
-		}
-		if (Input.GetKey (KeyCode.LeftArrow) == true) {
-			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
-		}
-		if (Input.GetKeyDown (KeyCode.Space) == true) {
-			TimeHeld += Time.deltaTime;
-		} else {
-			TimeHeld = 0;
-		}
-		if (Input.GetKeyUp (KeyCode.Space) == true) {
+		if ((Input.GetKeyUp (KeyCode.Space) == true) && Time.time > 2f) {
 			Transform NewBall = Instantiate (BallPrefab);
 			NewBall.position = SpawnPoint.position;
 			NewBall.rotation = SpawnPoint.rotation;
@@ -75,7 +55,18 @@ public class CannonControl : MonoBehaviour {
 
 			ChangeColor ();
 			GetComponent<AudioSource> ().Play();
+		}
+			
+	}
 
+	// Update is called once per frame
+	void Update() {
+
+		if (Input.GetKey (KeyCode.RightArrow) == true) {
+			transform.Rotate (new Vector3 (0, 0, -RotateSpeed));
+		}
+		if (Input.GetKey (KeyCode.LeftArrow) == true) {
+			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
 		}
 	}
 
