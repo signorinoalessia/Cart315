@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//Examples: https://answers.unity.com/questions/175356/holding-button-down-to-launch-object-further.html
+// More exs: https://answers.unity.com/questions/1072683/increase-jumpheight-while-holding-down-a-key.html
+// Ref: https://answers.unity.com/questions/1396024/coding-a-megaman-like-charge-shot.html
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +14,14 @@ public class CannonControl : MonoBehaviour {
 	public Material[] mat;
 	public Renderer CannonRenderer;
 
-	public float ShootForce;
+//	public float ShootForce;
+//	private bool Grounded;
+//	private bool TimeHeld;
+
+	public float ChargeTime = 0F;
+	public float ChargeRate = 2F;
+	public float FireRate1;
+	public float FireRate2;
 
 
 	// Use this for initialization
@@ -21,10 +32,22 @@ public class CannonControl : MonoBehaviour {
 
 		//*** chosen material will also be determined affected by space key input ***
 
-
+		StartCoroutine (TimerRoutine());
 
 	}
-	
+
+	IEnumerator TimerRoutine() {
+
+		if (Input.GetButtonDown("Fire1"))
+		{
+			yield return new WaitForSeconds(2f);
+			ChargeTime += ChargeRate;
+		}
+		if (Input.GetButtonUp("Fire1") && Time.time > 2f)
+		{
+			
+	}
+
 	// Update is called once per frame
 	void Update() {
 
@@ -35,8 +58,9 @@ public class CannonControl : MonoBehaviour {
 			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
 		}
 		if (Input.GetKeyDown (KeyCode.Space) == true) {
-			ShootForce += Time.deltaTime;
-
+			TimeHeld += Time.deltaTime;
+		} else {
+			TimeHeld = 0;
 		}
 		if (Input.GetKeyUp (KeyCode.Space) == true) {
 			Transform NewBall = Instantiate (BallPrefab);
