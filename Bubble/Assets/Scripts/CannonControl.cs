@@ -35,7 +35,10 @@ public class CannonControl : MonoBehaviour {
 			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
 		}
 		if (Input.GetKeyDown (KeyCode.Space) == true) {
+			ShootForce += Time.deltaTime;
 
+		}
+		if (Input.GetKeyUp (KeyCode.Space) == true) {
 			Transform NewBall = Instantiate (BallPrefab);
 			NewBall.position = SpawnPoint.position;
 			NewBall.rotation = SpawnPoint.rotation;
@@ -48,6 +51,7 @@ public class CannonControl : MonoBehaviour {
 
 			ChangeColor ();
 			GetComponent<AudioSource> ().Play();
+
 		}
 	}
 
