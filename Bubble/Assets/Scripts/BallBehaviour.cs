@@ -23,35 +23,39 @@ public class BallBehaviour : MonoBehaviour {
 		//Debug.Log ("Ball has collided with" + col.transform.tag);
 		//collider.rigidbody.velocity = new Vector3 (0, 0, 0);
 
-		GetComponent<AudioSource> ().Play();
+		GetComponent<AudioSource> ().Play ();
 
-		if((col.transform.tag == "Wall")||(col.transform.tag == "Ball")) {
+		if ((col.transform.tag == "Wall") || (col.transform.tag == "Ball")) {
 			
 			//collider.transform.GetComponent<Rigidbody>().velocity = new Vector3 (0, 0, 0);
 			this.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 			this.GetComponent<Rigidbody> ().isKinematic = true;
 
 		}
-		if(col.transform.tag == "Ball") {
+		if (col.transform.tag == "Ball") {
 			
 			//Have I collided with other ball?
 			//Does this ball have the same material as me?
 
-			if(GetComponent<Renderer>().material.name == col.transform.GetComponent<Renderer>().material.name) {
+			if (GetComponent<Renderer> ().material.name == col.transform.GetComponent<Renderer> ().material.name) {
 				CurrentlyCollidingSameColoredBalls++;
 				AllSameColoredBallsImCollidingWith.Add (col.transform);
 				//Am I part of a 2+ same colored colliding ball chain?
 				if (CurrentlyCollidingSameColoredBalls > 1) {
-					Explode();
+					Explode ();
 				}
-				Debug.Log("This ball has the same material as me!");
+				//Debug.Log("This ball has the same material as me!");
 			}
-		}			
+		}
+		if (col.transform.tag == "Rock") {
+			Debug.Log ("I hit the rock");
+			Destroy (gameObject);
+		}
 	}
 
 	void Explode() {
 
-		Debug.Log ("Time to explode!");
+		//Debug.Log ("Time to explode!");
 
 		GameObject.Find ("MainManager").GetComponent<MainManager>().TotalScore++;
 
@@ -68,5 +72,5 @@ public class BallBehaviour : MonoBehaviour {
 		Destroy(gameObject);
 	
 	}
-	
+
 }
