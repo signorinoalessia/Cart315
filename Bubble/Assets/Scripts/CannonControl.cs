@@ -14,49 +14,32 @@ public class CannonControl : MonoBehaviour {
 	public Material[] mat;
 	public Renderer CannonRenderer;
 
-	public float ShootForce;
-//	private bool Grounded;
-//	private bool TimeHeld;
+	//public float ShootForce;
+	public float CurrentForce;
+	public float MaxForce = 2f;
 
-	public float ChargeTime = 0F;
-	public float ChargeRate = 2F;
-	public float FireRate1;
-	public float FireRate2;
+	public bool pressingSpace =false;
+
+//	public float ChargeTime = 0F;
+//	public float ChargeRate = 2F;
+//	public float FireRate1;
+//	public float FireRate2;
 
 
 	// Use this for initialization
 	void Start () {
 
-		int chosenmaterial = Random.Range (0, mat.Length);
-		CannonRenderer.material = mat [chosenmaterial] ;
+//		int chosenmaterial = Random.Range (0, mat.Length);
+//		CannonRenderer.material = mat [chosenmaterial] ;
 
 		//*** chosen material will also be determined affected by space key input ***
 
-		StartCoroutine (TimerRoutine());
+		//CurrentForce = (int)CurrentForce;
 
-	}
+		int chosenmaterial = (int)Random.Range (0, mat.Length);
+		Debug.Log (chosenmaterial);
+		CannonRenderer.material = mat [chosenmaterial] ;
 
-	IEnumerator TimerRoutine() {
-
-		if (Input.GetKeyDown (KeyCode.Space) == true) {
-			yield return new WaitForSeconds(2f);
-			ChargeTime += ChargeRate;
-		}
-		if ((Input.GetKeyUp (KeyCode.Space) == true) && Time.time > 2f) {
-			Transform NewBall = Instantiate (BallPrefab);
-			NewBall.position = SpawnPoint.position;
-			NewBall.rotation = SpawnPoint.rotation;
-			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
-
-			Vector3 DirectionVector = SpawnPoint.position - transform.position;
-			//NewBall.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (0,ShootForce,0));
-			DirectionVector = DirectionVector * ShootForce;
-			NewBall.GetComponent<Rigidbody> ().AddForce(DirectionVector);
-
-			ChangeColor ();
-			GetComponent<AudioSource> ().Play();
-		}
-			
 	}
 
 	// Update is called once per frame
@@ -68,15 +51,46 @@ public class CannonControl : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftArrow) == true) {
 			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
 		}
+		// Reset Colour Material && Start CurrentForce
+		if (Input.GetKeyDown("space"))
+		{
+			Debug.Log ("down");
+			pressingSpace = true;
+
+			int chosenmaterial = (int)Random.Range (0, mat.Length);
+			Debug.Log (chosenmaterial);
+			CannonRenderer.material = mat [chosenmaterial] ;
+			
+		}
+		// Release Force (Transform) && reset CurrentForce
+		if (Input.GetKeyUp("space"))
+		{
+			Debug.Log ("up");
+			pressingSpace = false;
+			CurrentForce = 0;
+
+		}
+		// Increase Color Alpha && Increase CurrentForce
+		if (pressingSpace ==true && Time.time > 2f) {
+			//ChargeTime += ChargeRate;
+			//CurrentForce = (float)CurrentForce;
+
+			CurrentForce += Time.deltaTime;
+			Debug.Log ("My force is increasing");
+
+			//calculate force and set alpha for chosen colour
+			Transform NewBall = Instantiate (BallPrefab);
+			NewBall.position = SpawnPoint.position;
+			NewBall.rotation = SpawnPoint.rotation;
+			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
+
+
+			Vector3 DirectionVector = SpawnPoint.position - transform.position;
+			DirectionVector = DirectionVector * CurrentForce;
+			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
+
+			//ChangeColor ();
+			GetComponent<AudioSource> ().Play ();
+		}
 	}
-
-//	minJumpForce = sqrt(2 * gravity * minJumpHeight)
-
-	public void ChangeColor() {
-	
-		int chosenmaterial = Random.Range (0, mat.Length);
-		CannonRenderer.material = mat [chosenmaterial];
-	
-	}
-
 }

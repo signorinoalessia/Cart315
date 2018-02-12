@@ -73,3 +73,6 @@
 /Users/a_sign/Documents/GitHub/Cart315/Bubble/Temp/bin/Debug/Unity.Cecil.Mdb.dll
 /Users/a_sign/Documents/GitHub/Cart315/Bubble/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/a_sign/Documents/GitHub/Cart315/Bubble/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/a_sign/Desktop/Cart315/Bubble/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/a_sign/Desktop/Cart315/Bubble/Temp/bin/Debug/UnityEngine.VR.dll
+/Users/a_sign/Desktop/Cart315/Bubble/Temp/bin/Debug/ICSharpCode.NRefactory.dll
