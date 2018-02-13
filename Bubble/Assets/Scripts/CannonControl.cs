@@ -13,7 +13,7 @@ public class CannonControl : MonoBehaviour {
 	GameObject NewBall; 
 	//public float ShootForce;
 	public float CurrentForce;
-	public float MaxForce = 10f;
+	public float MaxForce = 100F;
 	public bool pressingSpace = false;
 	private int chosenmaterial;
 
@@ -38,7 +38,7 @@ public class CannonControl : MonoBehaviour {
 		// DOWN: Reset Colour Material && Start CurrentForce
 		if (Input.GetKeyDown("space"))
 		{
-			Debug.Log ("down");
+			//Debug.Log ("down");
 			pressingSpace = true;
 
 			//int chosenmaterial = (int)Random.Range (0, (mat.Length*colour.a));
@@ -55,26 +55,43 @@ public class CannonControl : MonoBehaviour {
 		// DURING: Increase Color Alpha && Increase CurrentForce
 		if (pressingSpace == true) {
 
-			CurrentForce += (Time.deltaTime*10);
-			Debug.Log ("My force is increasing");
-
+			CurrentForce += (Time.deltaTime*50);
 			Debug.Log(CannonRenderer.material.color);
+
+			//float MappedValue = ReMap (CurrentForce, 0.0F, MaxForce, 0.0F, 1.0F);
+			float MappedValue = scale(0.0F, (MaxForce/1.5F), 0.0F, 1.0F, CurrentForce);
+			Debug.Log ("Mapped: "+MappedValue);
+
 			Color MaterialColour = CannonRenderer.material.color;
-			MaterialColour.a = CurrentForce;
+			MaterialColour.a = MappedValue;
+
 			CannonRenderer.material.color = new Color (MaterialColour.r, MaterialColour.g, MaterialColour.b, MaterialColour.a);
 
 			GetComponent<AudioSource> ().Play ();
 		}
 		// UP: Release Force (Transform) && Reset CurrentForce
 		if (Input.GetKeyUp("space")) {
-			Debug.Log ("up");
+			//Debug.Log ("up");
 			pressingSpace = false;
-			//CurrentForce = 0;
 
 			Vector3 DirectionVector = SpawnPoint.position - transform.position;
 			DirectionVector = DirectionVector * CurrentForce;
 			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
 
+			CurrentForce = 0;
+
 		}
 	}
+
+	private float scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue){
+
+		float OldRange = (OldMax - OldMin);
+		float NewRange = (NewMax - NewMin);
+		float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
+
+		return(NewValue);
+	}
+
+
 }
+
