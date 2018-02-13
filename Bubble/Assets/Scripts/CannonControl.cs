@@ -18,13 +18,12 @@ public class CannonControl : MonoBehaviour {
 	public float CurrentForce;
 	public float MaxForce = 100F;
 	public bool pressingSpace = false;
-	private int chosenmaterial = (0, mat.length);
+	private int chosenmaterial;
 
 	// Use this for initialization
 	void Start () {
 
 		int chosenmaterial = (int)Random.Range (0, mat.Length);
-		Debug.Log (chosenmaterial);
 		CannonRenderer.material = mat [chosenmaterial] ;
 
 	}
@@ -45,8 +44,8 @@ public class CannonControl : MonoBehaviour {
 			pressingSpace = true;
 
 			//int chosenmaterial = (int)Random.Range (0, (mat.Length*colour.a));
-
-			Debug.Log (chosenmaterial);
+			chosenmaterial = (int)Random.Range (0, mat.Length);
+			//Debug.Log ("material:: "+chosenmaterial);
 			CannonRenderer.material = mat [chosenmaterial] ;
 
 			NewBall = Instantiate (BallPrefab);
@@ -59,15 +58,13 @@ public class CannonControl : MonoBehaviour {
 		if (pressingSpace == true) {
 
 			CurrentForce += (Time.deltaTime*50);
-			Debug.Log(CannonRenderer.material.color);
+			//Debug.Log(CannonRenderer.material.color);
 
-			//float MappedValue = ReMap (CurrentForce, 0.0F, MaxForce, 0.0F, 1.0F);
 			float MappedValue = scale(0.0F, (MaxForce/1.5F), 0.0F, 1.0F, CurrentForce);
-			Debug.Log ("Mapped: "+MappedValue);
+			//Debug.Log ("Mapped: "+MappedValue);
 
 			Color MaterialColour = CannonRenderer.material.color;
 			MaterialColour.a = MappedValue;
-
 			CannonRenderer.material.color = new Color (MaterialColour.r, MaterialColour.g, MaterialColour.b, MaterialColour.a);
 
 			GetComponent<AudioSource> ().Play ();
