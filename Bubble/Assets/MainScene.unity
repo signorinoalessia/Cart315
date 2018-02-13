@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TotalScore: 0
-  Timeleft: 10
+  Timeleft: 0
 --- !u!4 &187178457
 Transform:
   m_ObjectHideFlags: 0
@@ -844,14 +844,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d8d685337434502af09702fed130c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateSpeed: 2
-  BallPrefab: {fileID: 4927847302961096, guid: 3d5a33f5a6a494681ae474b0d4096631, type: 2}
+  RotateSpeed: 5
+  BallPrefab: {fileID: 1198044866318626, guid: 3d5a33f5a6a494681ae474b0d4096631, type: 2}
   SpawnPoint: {fileID: 1438032607}
   mat:
-  - {fileID: 2100000, guid: df537a09622124bf09963c68b05c1add, type: 2}
   - {fileID: 2100000, guid: cfa60392ad32e492e945aafd493a76ff, type: 2}
+  - {fileID: 2100000, guid: df537a09622124bf09963c68b05c1add, type: 2}
   - {fileID: 2100000, guid: b007d4c9d09134808be41004ad5223cd, type: 2}
-  - {fileID: 2100000, guid: cf0ea48cf7265485c9b7167e89a509e0, type: 2}
   CannonRenderer: {fileID: 1143195264}
   CurrentForce: 0
   MaxForce: 2

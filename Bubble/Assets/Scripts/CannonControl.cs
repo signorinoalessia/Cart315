@@ -5,16 +5,17 @@ using UnityEngine;
 public class CannonControl : MonoBehaviour {
 
 	public float RotateSpeed;
-	public Transform BallPrefab;
+	public GameObject BallPrefab;
 	public Transform SpawnPoint;
 	public Material[] mat;
 	public Renderer CannonRenderer;
 
+	GameObject NewBall; 
 	//public float ShootForce;
 	public float CurrentForce;
-	public float MaxForce = 2f;
-
-	public bool pressingSpace =false;
+	public float MaxForce = 10f;
+	public bool pressingSpace = false;
+	private int chosenmaterial;
 
 	// Use this for initialization
 	void Start () {
@@ -34,47 +35,46 @@ public class CannonControl : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftArrow) == true) {
 			transform.Rotate (new Vector3 (0, 0, RotateSpeed));
 		}
-		// Reset Colour Material && Start CurrentForce
+		// DOWN: Reset Colour Material && Start CurrentForce
 		if (Input.GetKeyDown("space"))
 		{
 			Debug.Log ("down");
 			pressingSpace = true;
 
-			int chosenmaterial = (int)Random.Range (0, mat.Length);
+			//int chosenmaterial = (int)Random.Range (0, (mat.Length*colour.a));
+
 			Debug.Log (chosenmaterial);
 			CannonRenderer.material = mat [chosenmaterial] ;
+
+			NewBall = Instantiate (BallPrefab);
+			NewBall.GetComponent<Transform>().position = SpawnPoint.position;
+			NewBall.GetComponent<Transform>().rotation = SpawnPoint.rotation;
+			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
 						
 		}
+		// DURING: Increase Color Alpha && Increase CurrentForce
+		if (pressingSpace == true) {
 
-		// Release Force (Transform) && Reset CurrentForce
+			CurrentForce += (Time.deltaTime*10);
+			Debug.Log ("My force is increasing");
+
+			Debug.Log(CannonRenderer.material.color);
+			Color MaterialColour = CannonRenderer.material.color;
+			MaterialColour.a = CurrentForce;
+			CannonRenderer.material.color = new Color (MaterialColour.r, MaterialColour.g, MaterialColour.b, MaterialColour.a);
+
+			GetComponent<AudioSource> ().Play ();
+		}
+		// UP: Release Force (Transform) && Reset CurrentForce
 		if (Input.GetKeyUp("space")) {
 			Debug.Log ("up");
 			pressingSpace = false;
-			CurrentForce = 0;
+			//CurrentForce = 0;
 
-			Transform NewBall.GetComponent<Rigidbody>;
 			Vector3 DirectionVector = SpawnPoint.position - transform.position;
 			DirectionVector = DirectionVector * CurrentForce;
 			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
 
-		}
-
-		// Increase Color Alpha && Increase CurrentForce
-		if (pressingSpace == true) {
-			//ChargeTime += ChargeRate;
-			//CurrentForce = (float)CurrentForce;
-
-			CurrentForce += Time.deltaTime;
-			Debug.Log ("My force is increasing");
-
-			// Calculate force and set alpha for chosen colour
-			Transform NewBall = Instantiate (BallPrefab);
-			NewBall.position = SpawnPoint.position;
-			NewBall.rotation = SpawnPoint.rotation;
-			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
-
-			//ChangeColor ();
-			GetComponent<AudioSource> ().Play ();
 		}
 	}
 }

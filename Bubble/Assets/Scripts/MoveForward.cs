@@ -9,9 +9,9 @@ public class MoveForward : MonoBehaviour {
 
 	public int Speed;
 	public Transform movingRock;
-	public Transform position1;
-	public Transform position2;
-	public Vector3 newPosition; 
+	public Vector3 position1;
+	public Vector3 position2;
+	private Vector3 newPosition; 
 	public string currentState;
 	public float smooth;
 	public float resetTime;
@@ -30,15 +30,15 @@ public class MoveForward : MonoBehaviour {
 	void ChangeTarget() {
 		if(currentState == "Moving to Position 1") {
 			currentState = "Moving to Position 2";
-			newPosition = position2.position;
+			newPosition = position2;
 		}
 		else if(currentState == "Moving to Position 2") {
 			currentState = "Moving to Position 1";
-			newPosition = position1.position;
+			newPosition = position1;
 		}
 		else if(currentState== ""){
 			currentState = "Moving to Position 2";
-			newPosition = position2.position;
+			newPosition = position2;
 		}
 		Invoke ("ChangeTarget", resetTime);
 	}
