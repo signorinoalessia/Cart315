@@ -1291,12 +1291,22 @@ Prefab:
     - target: {fileID: 114480400411598666, guid: 6649eb998c76f409a876cb0b364e7952,
         type: 2}
       propertyPath: position1.x
-      value: -1
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 114480400411598666, guid: 6649eb998c76f409a876cb0b364e7952,
         type: 2}
       propertyPath: position2.x
-      value: 7
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114480400411598666, guid: 6649eb998c76f409a876cb0b364e7952,
+        type: 2}
+      propertyPath: position1.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114480400411598666, guid: 6649eb998c76f409a876cb0b364e7952,
+        type: 2}
+      propertyPath: position2.y
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6649eb998c76f409a876cb0b364e7952, type: 2}

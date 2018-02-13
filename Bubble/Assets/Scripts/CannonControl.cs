@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// Reference for mapping values: https://forum.unity.com/threads/mapping-or-scaling-values-to-a-new-range.180090/
+// Reference for alpha channel: https://docs.unity3d.com/ScriptReference/Color-a.html
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +18,7 @@ public class CannonControl : MonoBehaviour {
 	public float CurrentForce;
 	public float MaxForce = 100F;
 	public bool pressingSpace = false;
-	private int chosenmaterial;
+	private int chosenmaterial = (0, mat.length);
 
 	// Use this for initialization
 	void Start () {
@@ -76,8 +79,9 @@ public class CannonControl : MonoBehaviour {
 
 			Vector3 DirectionVector = SpawnPoint.position - transform.position;
 			DirectionVector = DirectionVector * CurrentForce;
-			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
-
+			if (NewBall != null) {
+				NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
+			}
 			CurrentForce = 0;
 
 		}
