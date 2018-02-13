@@ -1,8 +1,4 @@
-﻿//Examples: https://answers.unity.com/questions/175356/holding-button-down-to-launch-object-further.html
-// More exs: https://answers.unity.com/questions/1072683/increase-jumpheight-while-holding-down-a-key.html
-// Ref: https://answers.unity.com/questions/1396024/coding-a-megaman-like-charge-shot.html
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,21 +16,8 @@ public class CannonControl : MonoBehaviour {
 
 	public bool pressingSpace =false;
 
-//	public float ChargeTime = 0F;
-//	public float ChargeRate = 2F;
-//	public float FireRate1;
-//	public float FireRate2;
-
-
 	// Use this for initialization
 	void Start () {
-
-//		int chosenmaterial = Random.Range (0, mat.Length);
-//		CannonRenderer.material = mat [chosenmaterial] ;
-
-		//*** chosen material will also be determined affected by space key input ***
-
-		//CurrentForce = (int)CurrentForce;
 
 		int chosenmaterial = (int)Random.Range (0, mat.Length);
 		Debug.Log (chosenmaterial);
@@ -60,34 +43,35 @@ public class CannonControl : MonoBehaviour {
 			int chosenmaterial = (int)Random.Range (0, mat.Length);
 			Debug.Log (chosenmaterial);
 			CannonRenderer.material = mat [chosenmaterial] ;
-			
+						
 		}
-		// Release Force (Transform) && reset CurrentForce
-		if (Input.GetKeyUp("space"))
-		{
+
+		// Release Force (Transform) && Reset CurrentForce
+		if (Input.GetKeyUp("space")) {
 			Debug.Log ("up");
 			pressingSpace = false;
 			CurrentForce = 0;
 
+			Transform NewBall.GetComponent<Rigidbody>;
+			Vector3 DirectionVector = SpawnPoint.position - transform.position;
+			DirectionVector = DirectionVector * CurrentForce;
+			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
+
 		}
+
 		// Increase Color Alpha && Increase CurrentForce
-		if (pressingSpace ==true && Time.time > 2f) {
+		if (pressingSpace == true) {
 			//ChargeTime += ChargeRate;
 			//CurrentForce = (float)CurrentForce;
 
 			CurrentForce += Time.deltaTime;
 			Debug.Log ("My force is increasing");
 
-			//calculate force and set alpha for chosen colour
+			// Calculate force and set alpha for chosen colour
 			Transform NewBall = Instantiate (BallPrefab);
 			NewBall.position = SpawnPoint.position;
 			NewBall.rotation = SpawnPoint.rotation;
 			NewBall.GetComponent<Renderer> ().material = CannonRenderer.material;
-
-
-			Vector3 DirectionVector = SpawnPoint.position - transform.position;
-			DirectionVector = DirectionVector * CurrentForce;
-			NewBall.GetComponent<Rigidbody> ().AddForce (DirectionVector);
 
 			//ChangeColor ();
 			GetComponent<AudioSource> ().Play ();
